@@ -11,62 +11,38 @@
 
         :root {
             --primary: #5865F2;
-            --secondary: #EB459E;
-            --dark: #1E1F22;
-            --darker: #0E1015;
-            --light: #F6F6F7;
+            --accent: #EB459E;
+            --dark: #0A0A0C;
+            --card: #111114;
+            --text: #FFFFFF;
         }
 
         body {
             font-family: 'Outfit', sans-serif;
-            background: var(--darker);
-            color: var(--light);
+            background-color: var(--dark);
+            color: var(--text);
+            min-height: 100vh;
             background-image: 
-                radial-gradient(circle at 0% 0%, rgba(88, 101, 242, 0.05) 0%, transparent 50%),
-                radial-gradient(circle at 100% 100%, rgba(235, 69, 158, 0.05) 0%, transparent 50%);
+                radial-gradient(circle at 15% 50%, rgba(88, 101, 242, 0.08), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(235, 69, 158, 0.08), transparent 25%);
         }
 
-        .stats-container {
-            background: rgba(30, 31, 34, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
-        }
-
-        .stats-container:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 8px 30px rgba(88, 101, 242, 0.2);
-        }
-
-        .stats-number {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
+        .header-gradient {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            position: relative;
-            display: inline-block;
         }
 
-        .stats-number.animate {
-            animation: numberPop 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @keyframes numberPop {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-        }
-
-        .server-card {
-            background: rgba(30, 31, 34, 0.7);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        .stats-card {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             position: relative;
             overflow: hidden;
         }
 
-        .server-card::before {
+        .stats-card::before {
             content: '';
             position: absolute;
             inset: 0;
@@ -75,188 +51,172 @@
             transition: transform 0.6s ease;
         }
 
-        .server-card:hover::before {
+        .stats-card:hover::before {
             transform: translateX(100%);
+        }
+
+        .stats-number {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            display: inline-block;
+            position: relative;
+        }
+
+        @keyframes countUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .stats-icon {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .server-card {
+            background: var(--card);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .server-card:hover {
-            transform: translateY(-4px) translateX(4px);
-            border-color: var(--primary);
-            box-shadow: 0 8px 30px rgba(88, 101, 242, 0.2);
-        }
-
-        .rank-number {
-            font-size: 2.5rem;
-            font-weight: 800;
-            position: absolute;
-            left: 0;
-            top: 0;
-            bottom: 0;
-            width: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(255, 255, 255, 0.02);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-        }
-
-        .top-1 .rank-number { 
-            color: #FFD700; 
-            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
-            animation: glowTop 2s infinite;
-        }
-        .top-2 .rank-number { 
-            color: #C0C0C0; 
-            text-shadow: 0 0 15px rgba(192, 192, 192, 0.3);
-            animation: glowTop 2s infinite 0.3s;
-        }
-        .top-3 .rank-number { 
-            color: #CD7F32; 
-            text-shadow: 0 0 15px rgba(205, 127, 50, 0.3);
-            animation: glowTop 2s infinite 0.6s;
-        }
-
-        @keyframes glowTop {
-            0%, 100% { opacity: 0.8; text-shadow: 0 0 10px currentColor; }
-            50% { opacity: 1; text-shadow: 0 0 20px currentColor; }
-        }
-
-        .stats-pill {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.6rem 1rem;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .stats-pill:hover {
-            background: rgba(255, 255, 255, 0.08);
             transform: translateY(-2px);
-            border-color: rgba(88, 101, 242, 0.3);
-        }
-
-        .member-change {
-            font-size: 0.75rem;
-            font-weight: 600;
-            padding: 0.2rem 0.6rem;
-            border-radius: 6px;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.3rem;
-            transition: all 0.3s ease;
-        }
-
-        .member-change.positive {
-            background: rgba(74, 222, 128, 0.1);
-            color: #4ade80;
-            border: 1px solid rgba(74, 222, 128, 0.2);
-        }
-
-        .member-change.negative {
-            background: rgba(248, 113, 113, 0.1);
-            color: #f87171;
-            border: 1px solid rgba(248, 113, 113, 0.2);
-        }
-
-        .server-icon {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 2px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .server-card:hover .server-icon {
-            transform: scale(1.1) rotate(5deg);
             border-color: var(--primary);
-            box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+            box-shadow: 0 8px 32px rgba(88, 101, 242, 0.15);
         }
 
-        .join-button {
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 0.6rem 1.2rem;
-            border-radius: 12px;
-            font-weight: 600;
-            transition: all 0.3s ease;
+        .rank-badge {
+            font-weight: 800;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .join-button::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
+        .top-1 .rank-badge { 
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            animation: glowGold 2s infinite;
+        }
+        .top-2 .rank-badge { 
+            background: linear-gradient(45deg, #C0C0C0, #A0A0A0);
+            animation: glowSilver 2s infinite;
+        }
+        .top-3 .rank-badge { 
+            background: linear-gradient(45deg, #CD7F32, #8B4513);
+            animation: glowBronze 2s infinite;
         }
 
-        .join-button:hover::after {
-            transform: translateX(100%);
+        @keyframes glowGold {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 215, 0, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.8); }
         }
 
-        .join-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4);
+        @keyframes glowSilver {
+            0%, 100% { box-shadow: 0 0 15px rgba(192, 192, 192, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(192, 192, 192, 0.8); }
         }
 
-        @keyframes fadeInUp {
-            from {
+        @keyframes glowBronze {
+            0%, 100% { box-shadow: 0 0 15px rgba(205, 127, 50, 0.5); }
+            50% { box-shadow: 0 0 25px rgba(205, 127, 50, 0.8); }
+        }
+
+        .top-server {
+            transform: scale(1.02);
+            border-width: 2px;
+        }
+
+        .top-1 { border-image: linear-gradient(45deg, #FFD700, #FFA500) 1; }
+        .top-2 { border-image: linear-gradient(45deg, #C0C0C0, #A0A0A0) 1; }
+        .top-3 { border-image: linear-gradient(45deg, #CD7F32, #8B4513) 1; }
+
+        .stat-pill {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .stat-pill:hover {
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-1px);
+        }
+
+        .member-diff {
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .member-diff.positive { color: #4ade80; }
+        .member-diff.negative { color: #f87171; }
+
+        .join-btn {
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            transition: all 0.3s ease;
+        }
+
+        .join-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(88, 101, 242, 0.2);
+        }
+
+        .boost-tag {
+            background: linear-gradient(45deg, #EB459E, #DB2777);
+        }
+
+        @keyframes fadeUp {
+            from { 
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(10px);
             }
-            to {
+            to { 
                 opacity: 1;
                 transform: translateY(0);
             }
         }
 
-        .animate-fade-in {
-            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        .animate-fade-up {
+            animation: fadeUp 0.5s ease forwards;
         }
 
-        .boost-badge {
-            background: linear-gradient(45deg, var(--secondary), #DB2777);
-            padding: 0.4rem 0.8rem;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            animation: pulse 2s infinite;
+        .server-icon {
+            transition: all 0.3s ease;
         }
 
-        @keyframes pulse {
-            0%, 100% { opacity: 1; transform: scale(1); }
-            50% { opacity: 0.8; transform: scale(0.95); }
+        .server-card:hover .server-icon {
+            transform: scale(1.05);
         }
     </style>
 </head>
-<body class="py-12 px-4">
-    <div class="max-w-4xl mx-auto text-center mb-16">
-        <h1 class="text-6xl font-bold mb-4">ZENO</h1>
-        <p class="text-gray-400">Top Servidores de Discord</p>
+<body class="p-4 md:p-8">
+    <!-- Header -->
+    <div class="max-w-4xl mx-auto text-center mb-12">
+        <h1 class="text-6xl md:text-7xl font-bold mb-3 header-gradient">ZENO</h1>
+        <p class="text-gray-400 text-lg">Top Servidores de Discord</p>
     </div>
 
-    <div class="max-w-3xl mx-auto mb-16">
-        <div class="stats-container rounded-lg p-8 grid grid-cols-2 gap-8 text-center">
-            <div class="relative">
-                <i class="fas fa-users text-3xl mb-4 text-blue-400"></i>
+    <!-- Stats -->
+    <div class="max-w-3xl mx-auto mb-12">
+        <div class="stats-card rounded-2xl p-6 md:p-8 grid grid-cols-2 gap-8">
+            <div class="text-center relative overflow-hidden">
+                <i class="fas fa-users text-3xl mb-4 text-blue-400 stats-icon"></i>
                 <div class="text-4xl font-bold mb-2 stats-number" id="total-members">0</div>
                 <div class="text-sm text-gray-400">Miembros Totales</div>
             </div>
-            <div class="relative">
-                <i class="fas fa-server text-3xl mb-4 text-purple-400"></i>
+            <div class="text-center relative overflow-hidden">
+                <i class="fas fa-server text-3xl mb-4 text-purple-400 stats-icon"></i>
                 <div class="text-4xl font-bold mb-2 stats-number" id="total-servers">0</div>
                 <div class="text-sm text-gray-400">Servidores</div>
             </div>
         </div>
     </div>
 
-    <div class="max-w-3xl mx-auto space-y-3" id="servers-container"></div>
+    <!-- Server List -->
+    <div class="max-w-3xl mx-auto space-y-4" id="servers-container"></div>
 
     <script>
         function animateValue(element, start, end, duration) {
@@ -267,9 +227,6 @@
                 const currentValue = Math.floor(progress * (end - start) + start);
                 element.textContent = currentValue.toLocaleString();
                 
-                element.classList.add('animate');
-                setTimeout(() => element.classList.remove('animate'), 100);
-
                 if (progress < 1) {
                     window.requestAnimationFrame(step);
                 }
@@ -281,61 +238,76 @@
             .then(response => response.json())
             .then(servers => {
                 const container = document.getElementById('servers-container');
+                
+                // Ordenar servidores por miembros actuales
                 servers.sort((a, b) => b.current.members - a.current.members);
 
+                // Calcular totales
                 const totalMembers = servers.reduce((acc, server) => acc + server.current.members, 0);
-                document.getElementById('total-members').textContent = totalMembers.toLocaleString();
-                document.getElementById('total-servers').textContent = servers.length;
+                
+                // Actualizar y animar estadísticas
+                const totalMembersElement = document.getElementById('total-members');
+                const totalServersElement = document.getElementById('total-servers');
+                
+                totalMembersElement.textContent = totalMembers.toLocaleString();
+                totalServersElement.textContent = servers.length.toString();
 
+                // Animar contadores
+                animateValue(totalMembersElement, 0, totalMembers, 2000);
+                animateValue(totalServersElement, 0, servers.length, 1500);
+
+                // Generar cards de servidores
                 servers.forEach((server, index) => {
                     const memberDifference = server.current.members - server.previous.members;
                     const card = document.createElement('div');
                     const isTop3 = index < 3;
                     
-                    card.className = `server-card rounded-lg p-4 animate-fade-in ${isTop3 ? `top-${index + 1}` : ''}`;
+                    card.className = `server-card rounded-xl p-5 animate-fade-up ${isTop3 ? `top-${index + 1} top-server` : ''}`;
                     card.style.animationDelay = `${index * 50}ms`;
 
                     card.innerHTML = `
-                        <div class="rank-number">#${index + 1}</div>
-                        <div class="flex items-center gap-4" style="margin-left: 80px; padding: 1rem;">
+                        <div class="flex items-center gap-4">
+                            <div class="rank-badge w-10 h-10 rounded-lg flex items-center justify-center text-lg">
+                                #${index + 1}
+                            </div>
+                            
                             <img src="${server.current.icon}" alt="${server.name}" 
                                  class="w-12 h-12 rounded-lg server-icon">
                             
-                            <div class="flex-1">
-                                <div class="flex items-center gap-3 mb-2">
-                                    <h2 class="font-semibold">${server.name}</h2>
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                    <h2 class="font-semibold truncate">${server.name}</h2>
                                     ${server.current.boost > 0 ? `
-                                        <span class="boost-badge">
+                                        <span class="boost-tag px-2 py-1 rounded-md text-sm">
                                             <i class="fas fa-rocket"></i> ${server.current.boost}
                                         </span>
                                     ` : ''}
                                 </div>
                                 
-                                <div class="flex gap-3 flex-wrap">
-                                    <span class="stats-pill">
+                                <div class="flex gap-2 flex-wrap">
+                                    <span class="stat-pill px-3 py-1.5 rounded-lg text-sm">
                                         <i class="fas fa-users text-blue-400"></i>
-                                        <div class="member-stats">
-                                            ${server.current.members.toLocaleString()}
-                                            ${memberDifference !== 0 ? `
-                                                <span class="member-change ${memberDifference > 0 ? 'positive' : 'negative'}">
-                                                    <i class="fas fa-${memberDifference > 0 ? 'arrow-up' : 'arrow-down'}"></i>
-                                                    ${Math.abs(memberDifference)}
-                                                </span>
-                                            ` : ''}
-                                        </div>
+                                        <span class="ml-2">${server.current.members.toLocaleString()}</span>
+                                        ${memberDifference !== 0 ? `
+                                            <span class="member-diff ${memberDifference > 0 ? 'positive' : 'negative'} ml-2">
+                                                <i class="fas fa-${memberDifference > 0 ? 'arrow-up' : 'arrow-down'}"></i>
+                                                ${Math.abs(memberDifference)}
+                                            </span>
+                                        ` : ''}
                                     </span>
-                                    <span class="stats-pill">
+                                    <span class="stat-pill px-3 py-1.5 rounded-lg text-sm">
                                         <i class="fas fa-robot text-purple-400"></i>
-                                        ${server.current.bots}
+                                        <span class="ml-2">${server.current.bots}</span>
                                     </span>
-                                    <span class="stats-pill">
+                                    <span class="stat-pill px-3 py-1.5 rounded-lg text-sm truncate max-w-[150px]">
                                         <i class="fas fa-crown text-yellow-400"></i>
-                                        ${server.current.owner}
+                                        <span class="ml-2">${server.current.owner}</span>
                                     </span>
                                 </div>
                             </div>
 
-                            <a href="${server.current.invite}" target="_blank" class="join-button">
+                            <a href="${server.current.invite}" target="_blank" 
+                               class="join-btn px-4 py-2 rounded-lg text-white text-sm font-medium">
                                 Unirse
                             </a>
                         </div>
@@ -343,8 +315,19 @@
                     
                     container.appendChild(card);
                 });
+
+                // Animar las estadísticas
+                totalMembersElement.style.animation = 'countUp 1s ease forwards';
+                totalServersElement.style.animation = 'countUp 1s ease forwards 0.2s';
             })
-            .catch(error => console.error('Error:', error));
+            .catch(error => {
+                console.error('Error cargando los datos:', error);
+                document.getElementById('servers-container').innerHTML = `
+                    <div class="text-center text-red-500 p-4">
+                        Error al cargar los datos. Por favor, intenta más tarde.
+                    </div>
+                `;
+            });
     </script>
 </body>
 </html> 

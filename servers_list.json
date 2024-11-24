@@ -7,7 +7,7 @@
       "bots": 15,
       "owner": "brajos123",
       "boost": 0,
-      "invite": "https://discord.gg/3J5NkF3W",
+      "invite": "https://discord.gg/3kMAaenm",
       "icon": "https://cdn.discordapp.com/icons/1290023220476514314/df52ad4b56541c8d62770a521d6b58be.webp?size=1024"
     },
     "previous": {
@@ -63,15 +63,15 @@
     "name": "🔥🔥 SERVER DE BETHERIT 🔥🔥",
     "id": "950100744927842344",
     "current": {
-      "members": 50,
+      "members": 51,
       "bots": 16,
       "owner": "betherit",
       "boost": 0,
-      "invite": "https://discord.gg/TkhxQUByqn",
+      "invite": "https://discord.gg/NCHzrqr4",
       "icon": "https://cdn.discordapp.com/icons/950100744927842344/2e6b1dca6e6025cc4f618ed5e28b4508.webp?size=1024"
     },
     "previous": {
-      "members": 49,
+      "members": 50,
       "bots": 16,
       "owner": "betherit",
       "boost": 0,
@@ -200,26 +200,6 @@
     }
   },
   {
-    "name": "Los dragones de Devs",
-    "id": "1304904238354399337",
-    "current": {
-      "members": 9,
-      "bots": 18,
-      "owner": ".gusinus1_08468.",
-      "boost": 0,
-      "invite": "https://discord.gg/K8Weq7JRd6",
-      "icon": "https://cdn.discordapp.com/icons/1304904238354399337/9a6e2e89f4b50546b7e4f7a9cd5a37a3.webp?size=1024"
-    },
-    "previous": {
-      "members": 9,
-      "bots": 18,
-      "owner": ".gusinus1_08468.",
-      "boost": 0,
-      "invite": "https://discord.gg/K8Weq7JRd6",
-      "icon": "https://cdn.discordapp.com/icons/1304904238354399337/9a6e2e89f4b50546b7e4f7a9cd5a37a3.webp?size=1024"
-    }
-  },
-  {
     "name": "Pruebitas",
     "id": "1302302464078516284",
     "current": {
@@ -237,6 +217,26 @@
       "boost": 0,
       "invite": "https://discord.gg/QWdEGhKa",
       "icon": "https://cdn.discordapp.com/icons/1302302464078516284/a9f7f9e2daa0303e01bd6e05858486af.webp?size=1024"
+    }
+  },
+  {
+    "name": "Los dragones de Devs",
+    "id": "1304904238354399337",
+    "current": {
+      "members": 1,
+      "bots": 18,
+      "owner": ".gusinus1_08468.",
+      "boost": 0,
+      "invite": "https://discord.gg/K8Weq7JRd6",
+      "icon": "https://cdn.discordapp.com/icons/1304904238354399337/9a6e2e89f4b50546b7e4f7a9cd5a37a3.webp?size=1024"
+    },
+    "previous": {
+      "members": 9,
+      "bots": 18,
+      "owner": ".gusinus1_08468.",
+      "boost": 0,
+      "invite": "https://discord.gg/K8Weq7JRd6",
+      "icon": "https://cdn.discordapp.com/icons/1304904238354399337/9a6e2e89f4b50546b7e4f7a9cd5a37a3.webp?size=1024"
     }
   }
 ]
