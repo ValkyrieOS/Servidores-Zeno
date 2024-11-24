@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZENO Bot - Top Servers</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
+        :root {
+            --primary: #5865F2;
+            --secondary: #EB459E;
+            --dark: #1E1F22;
+            --darker: #0E1015;
+            --light: #F6F6F7;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--darker);
+            color: var(--light);
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(88, 101, 242, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(235, 69, 158, 0.05) 0%, transparent 50%);
+        }
+
+        .stats-container {
+            background: rgba(30, 31, 34, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+        }
+
+        .stats-container:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(88, 101, 242, 0.2);
+        }
+
+        .stats-number {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            position: relative;
+            display: inline-block;
+        }
+
+        .stats-number.animate {
+            animation: numberPop 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes numberPop {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .server-card {
+            background: rgba(30, 31, 34, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .server-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .server-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .server-card:hover {
+            transform: translateY(-4px) translateX(4px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 30px rgba(88, 101, 242, 0.2);
+        }
+
+        .rank-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.02);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .top-1 .rank-number { 
+            color: #FFD700; 
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.3);
+            animation: glowTop 2s infinite;
+        }
+        .top-2 .rank-number { 
+            color: #C0C0C0; 
+            text-shadow: 0 0 15px rgba(192, 192, 192, 0.3);
+            animation: glowTop 2s infinite 0.3s;
+        }
+        .top-3 .rank-number { 
+            color: #CD7F32; 
+            text-shadow: 0 0 15px rgba(205, 127, 50, 0.3);
+            animation: glowTop 2s infinite 0.6s;
+        }
+
+        @keyframes glowTop {
+            0%, 100% { opacity: 0.8; text-shadow: 0 0 10px currentColor; }
+            50% { opacity: 1; text-shadow: 0 0 20px currentColor; }
+        }
+
+        .stats-pill {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 0.6rem 1rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stats-pill:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+            border-color: rgba(88, 101, 242, 0.3);
+        }
+
+        .member-change {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .member-change.positive {
+            background: rgba(74, 222, 128, 0.1);
+            color: #4ade80;
+            border: 1px solid rgba(74, 222, 128, 0.2);
+        }
+
+        .member-change.negative {
+            background: rgba(248, 113, 113, 0.1);
+            color: #f87171;
+            border: 1px solid rgba(248, 113, 113, 0.2);
+        }
+
+        .server-icon {
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .server-card:hover .server-icon {
+            transform: scale(1.1) rotate(5deg);
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+        }
+
+        .join-button {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .join-button::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .join-button:hover::after {
+            transform: translateX(100%);
+        }
+
+        .join-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 20px rgba(88, 101, 242, 0.4);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-fade-in {
+            animation: fadeInUp 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        .boost-badge {
+            background: linear-gradient(45deg, var(--secondary), #DB2777);
+            padding: 0.4rem 0.8rem;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(0.95); }
+        }
+    </style>
+</head>
+<body class="py-12 px-4">
+    <div class="max-w-4xl mx-auto text-center mb-16">
+        <h1 class="text-6xl font-bold mb-4">ZENO</h1>
+        <p class="text-gray-400">Top Servidores de Discord</p>
+    </div>
+
+    <div class="max-w-3xl mx-auto mb-16">
+        <div class="stats-container rounded-lg p-8 grid grid-cols-2 gap-8 text-center">
+            <div class="relative">
+                <i class="fas fa-users text-3xl mb-4 text-blue-400"></i>
+                <div class="text-4xl font-bold mb-2 stats-number" id="total-members">0</div>
+                <div class="text-sm text-gray-400">Miembros Totales</div>
+            </div>
+            <div class="relative">
+                <i class="fas fa-server text-3xl mb-4 text-purple-400"></i>
+                <div class="text-4xl font-bold mb-2 stats-number" id="total-servers">0</div>
+                <div class="text-sm text-gray-400">Servidores</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-3xl mx-auto space-y-3" id="servers-container"></div>
+
+    <script>
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const currentValue = Math.floor(progress * (end - start) + start);
+                element.textContent = currentValue.toLocaleString();
+                
+                element.classList.add('animate');
+                setTimeout(() => element.classList.remove('animate'), 100);
+
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        fetch('servers_list.json')
+            .then(response => response.json())
+            .then(servers => {
+                const container = document.getElementById('servers-container');
+                servers.sort((a, b) => b.current.members - a.current.members);
+
+                const totalMembers = servers.reduce((acc, server) => acc + server.current.members, 0);
+                document.getElementById('total-members').textContent = totalMembers.toLocaleString();
+                document.getElementById('total-servers').textContent = servers.length;
+
+                servers.forEach((server, index) => {
+                    const memberDifference = server.current.members - server.previous.members;
+                    const card = document.createElement('div');
+                    const isTop3 = index < 3;
+                    
+                    card.className = `server-card rounded-lg p-4 animate-fade-in ${isTop3 ? `top-${index + 1}` : ''}`;
+                    card.style.animationDelay = `${index * 50}ms`;
+
+                    card.innerHTML = `
+                        <div class="rank-number">#${index + 1}</div>
+                        <div class="flex items-center gap-4" style="margin-left: 80px; padding: 1rem;">
+                            <img src="${server.current.icon}" alt="${server.name}" 
+                                 class="w-12 h-12 rounded-lg server-icon">
+                            
+                            <div class="flex-1">
+                                <div class="flex items-center gap-3 mb-2">
+                                    <h2 class="font-semibold">${server.name}</h2>
+                                    ${server.current.boost > 0 ? `
+                                        <span class="boost-badge">
+                                            <i class="fas fa-rocket"></i> ${server.current.boost}
+                                        </span>
+                                    ` : ''}
+                                </div>
+                                
+                                <div class="flex gap-3 flex-wrap">
+                                    <span class="stats-pill">
+                                        <i class="fas fa-users text-blue-400"></i>
+                                        <div class="member-stats">
+                                            ${server.current.members.toLocaleString()}
+                                            ${memberDifference !== 0 ? `
+                                                <span class="member-change ${memberDifference > 0 ? 'positive' : 'negative'}">
+                                                    <i class="fas fa-${memberDifference > 0 ? 'arrow-up' : 'arrow-down'}"></i>
+                                                    ${Math.abs(memberDifference)}
+                                                </span>
+                                            ` : ''}
+                                        </div>
+                                    </span>
+                                    <span class="stats-pill">
+                                        <i class="fas fa-robot text-purple-400"></i>
+                                        ${server.current.bots}
+                                    </span>
+                                    <span class="stats-pill">
+                                        <i class="fas fa-crown text-yellow-400"></i>
+                                        ${server.current.owner}
+                                    </span>
+                                </div>
+                            </div>
+
+                            <a href="${server.current.invite}" target="_blank" class="join-button">
+                                Unirse
+                            </a>
+                        </div>
+                    `;
+                    
+                    container.appendChild(card);
+                });
+            })
+            .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html> 
