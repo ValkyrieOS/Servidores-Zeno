@@ -3,19 +3,19 @@
     "name": "Mithos MC Network",
     "id": "1290023220476514314",
     "current": {
+      "members": 186,
+      "bots": 15,
+      "owner": "brajos123",
+      "boost": 0,
+      "invite": "https://discord.gg/66cM7XCU",
+      "icon": "https://cdn.discordapp.com/icons/1290023220476514314/df52ad4b56541c8d62770a521d6b58be.webp?size=1024"
+    },
+    "previous": {
       "members": 185,
       "bots": 15,
       "owner": "brajos123",
       "boost": 0,
       "invite": "https://discord.gg/3mSv9bX2",
-      "icon": "https://cdn.discordapp.com/icons/1290023220476514314/df52ad4b56541c8d62770a521d6b58be.webp?size=1024"
-    },
-    "previous": {
-      "members": 187,
-      "bots": 14,
-      "owner": "brajos123",
-      "boost": 0,
-      "invite": "https://discord.gg/3kMAaenm",
       "icon": "https://cdn.discordapp.com/icons/1290023220476514314/df52ad4b56541c8d62770a521d6b58be.webp?size=1024"
     }
   },
@@ -31,7 +31,7 @@
       "icon": "https://cdn.discordapp.com/icons/1279530656329895967/aa2cd4edc49aa70829890fd017c442e5.webp?size=1024"
     },
     "previous": {
-      "members": 137,
+      "members": 138,
       "bots": 9,
       "owner": "igennosx_15093",
       "boost": 0,
@@ -51,7 +51,7 @@
       "icon": "https://cdn.discordapp.com/icons/1266893310320967681/db1da416a11e63846ae578bc86d00485.webp?size=1024"
     },
     "previous": {
-      "members": 115,
+      "members": 113,
       "bots": 18,
       "owner": "glazzier_",
       "boost": 0,
@@ -63,7 +63,7 @@
     "name": "GDPS Elite Thorn",
     "id": "1306715711502155877",
     "current": {
-      "members": 54,
+      "members": 55,
       "bots": 25,
       "owner": "mrsentiel",
       "boost": 2,
@@ -71,8 +71,8 @@
       "icon": "https://cdn.discordapp.com/icons/1306715711502155877/f3ac5aa793bde0d8ca66b7f97aac9a89.webp?size=1024"
     },
     "previous": {
-      "members": 50,
-      "bots": 24,
+      "members": 54,
+      "bots": 25,
       "owner": "mrsentiel",
       "boost": 2,
       "invite": "https://discord.gg/SbmgAqbK6P",
@@ -225,7 +225,7 @@
     "current": {
       "members": 1,
       "bots": 18,
-      "owner": ".gusinus1_08468.",
+      "owner": ".gusinus1_08468",
       "boost": 0,
       "invite": "https://discord.gg/K8Weq7JRd6",
       "icon": "https://cdn.discordapp.com/icons/1304904238354399337/9a6e2e89f4b50546b7e4f7a9cd5a37a3.webp?size=1024"
