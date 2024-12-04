@@ -237,7 +237,7 @@
 
     <header class="title-container">
       <h1 class="main-title">ZENO</h1>
-      <p class="subtitle">Descubre los mejores servidores de Discord</p>
+      <p class="subtitle" id="update-date"></p>
     </header>
 
     <main class="max-w-4xl mx-auto">
@@ -389,6 +389,11 @@
 
             container.appendChild(card);
           });
+
+          const updateDate = new Date(servers[0].executedAt).toLocaleString("es-ES", {
+            timeZone: "UTC",
+          });
+          document.getElementById("update-date").textContent = `Última actualización: ${updateDate}`;
         })
         .catch((error) => console.error("Error:", error));
     </script>
